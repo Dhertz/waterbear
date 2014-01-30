@@ -443,6 +443,7 @@ global.ajax = ajax;
             event.wbValid = true;
         }
         // fix target?
+        event.stopPropagation(); // prevent double-firing, hopefully
         return event;
     }
 
