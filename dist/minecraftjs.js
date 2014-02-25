@@ -3892,7 +3892,7 @@ wb.ajax = {
 Event.on('.runScripts', 'click', null, runCurrentScripts);
 wb.runtimescript = "";
 
-wb.ajax.text("./dist/minecraftjs_runtime.min.js","",function(ret){wb.runtimescript = ret;});
+wb.ajax.text("./dist/minecraftjs_runtime.js","",function(ret){wb.runtimescript = ret;});
     
     
 wb.runScript = function(script){
@@ -4190,7 +4190,7 @@ wb.menu({
         {
             "blocktype": "context",
             "id": "aa146082-9a9c-4ae7-a409-a89e84dc113a",
-            "script": "range({{1}}).forEach(function(count##, item){[[1]]});",
+            "script": "range(0, {{1}}, 1).forEach(function(count##, item){[[1]]});",
             "help": "repeat the contained blocks so many times",
             "locals": [
                 {
