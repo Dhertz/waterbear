@@ -3622,19 +3622,38 @@ function scriptsToString(title, description){
 
 
 function createDownloadUrl(evt){
-    var URL = window.webkitURL || window.URL;
-    var file = new Blob([scriptsToString()], {type: 'application/json'});
-    var reader = new FileReader();
-    var a = document.createElement('a');
-    reader.onloadend = function(){
-        a.href = reader.result;
-        a.download = 'script.json';
-        a.target = '_blank';
-        document.body.appendChild(a);
-        a.click();
-    };
-    reader.readAsDataURL(file);
-    evt.preventDefault();
+    // var URL = window.webkitURL || window.URL;
+    // var file = new Blob([scriptsToString()], {type: 'application/json'});
+    // var reader = new FileReader();
+    // var a = document.createElement('a');
+    // reader.onloadend = function(){
+    //     a.href = reader.result;
+    //     a.download = 'script.json';
+    //     a.target = '_blank';
+    //     document.body.appendChild(a);
+    //     a.click();
+    // };
+    // reader.readAsDataURL(file);
+    // evt.preventDefault();
+
+
+    var params = {'code':scriptsToString()};
+  
+    var keys = Object.keys(params);
+    var parts = [];
+    keys.forEach(function(key){
+      if (Array.isArray(params[key])){
+        params[key].forEach(function(value){
+          parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        });
+      }else{
+        parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
+      }
+    });
+    var query = parts.join('&');
+    
+    var win=window.open("../download?" + query, '_blank');
+    win.focus();
 }
 
 Event.on('.save_scripts', 'click', null, createDownloadUrl);
