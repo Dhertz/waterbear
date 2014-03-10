@@ -2208,7 +2208,7 @@ hljs.LANGUAGES.javascript = {
     // Treat mouse events and single-finger touch events similarly
     var blend = function(event){
         if (isPointerEvent(event)){
-            if (isTouch){
+            if (event.isTouch){
                 if (event.touches.length > 1){
                     return event;
                 }
@@ -2686,7 +2686,7 @@ hljs.LANGUAGES.javascript = {
 
     // Initialize event handlers
     wb.initializeDragHandlers = function(){
-        if (Event.isTouch){
+        if (false){
             Event.on('.scripts_workspace .contained, .block-menu', 'touchstart', '.block', initDrag);
             Event.on('.content', 'touchmove', null, drag);
             Event.on('.content', 'touchend', null, endDrag);
